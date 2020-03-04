@@ -1,7 +1,9 @@
 package com.java.numtoword.main;
- import java.util.*;
  
- import java.util.Scanner;
+import java.util.Scanner;
+
+import com.java.numtoword.constant.NumToWordConstants;
+import com.java.numtoword.service.NumToWordService;
 
  public class NumberToWord {
 
@@ -12,14 +14,14 @@ package com.java.numtoword.main;
              
              try {
 	             number = scanner.nextInt();
-	             while(number!=-1){
+	             while(number!=NumToWordConstants.NOT_FOUND){
 	                 if(number>=0 && number<=999){
 	                     if(number==0){
 	                         System.out.print("NUMBER AFTER CONVERSION:\tZERO");
 	                     } else {
 	                         System.out.print("NUMBER AFTER CONVERSION:\t");
-	                         numberToWord(((number / 100) % 10), " HUNDRED");
-	                         numberToWord((number % 100), " ");
+	                         NumToWordService.numberToWord(((number / 100) % 10), " HUNDRED");
+	                         NumToWordService.numberToWord((number % 100), " ");
 	                     }
 	
 	                 } else{
@@ -30,20 +32,9 @@ package com.java.numtoword.main;
 	             }
              }catch (Exception e) {
          		System.out.println("Please enter a valid number");
+         		
         	 }
          }
 
-         public static void numberToWord(int num, String val) throws Exception{
-             String ones[] = {" ", " ONE", " TWO", " THREE", " FOUR", " FIVE", " SIX", " SEVEN", " EIGHT", " NINE", " TEN", " ELEVEN", " TWELVE", " THIRTEEN", " FOURTEEN", " FIFTEEN", " SIXTEEN", " SEVENTEEN", " EIGHTEEN", " NINETEEN"
-             };
-             String tens[] = {" ", " ", " TWENTY", " THIRTY", " FOURTY", " FIFTY", " SIXTY", " SEVENTY", " EIGHTY", " NINETY"};
-             if (num > 19) {
-                 System.out.print(tens[num / 10] + " " + ones[num % 10]);
-             } else {
-                 System.out.print(ones[num]);
-             }
-             if (num > 0) {
-                 System.out.print(val);
-             }
-         }
+         
      }
